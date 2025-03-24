@@ -1,9 +1,5 @@
 import { createSlice } from '@reduxjs/toolkit';
 
-//Här skapar vi en cartSlice som innehåller vårt initiala tillstånd och reducerare för att lägga till, ta bort och rensa varor i varukorgen.
-
-
-
 const cartSlice = createSlice({
   name: 'cart',
   initialState: {
@@ -11,13 +7,13 @@ const cartSlice = createSlice({
   },
   reducers: {
     addItem: (state, action) => {
-      state.items.push(action.payload);
+      state.items.push(action.payload); // Lägger till varan
     },
     removeItem: (state, action) => {
-      state.items = state.items.filter(item => item.id !== action.payload.id);
+      state.items = state.items.filter(item => item.id !== action.payload.id); // Tar bort varan
     },
     clearCart: (state) => {
-      state.items = [];
+      state.items = []; // Tömmer varukorgen
     },
   },
 });

@@ -1,5 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import styles from '../styles/Checkout.module.scss';
 
 //ikon och länk till varukorg, navigerar mellan sidor via Link. Just nu utan funktionalitet för att visa antal varor.
 

@@ -1,34 +1,34 @@
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { createOrder } from '../services/api'; // Rätt sökväg för att importera createOrder
 import { clearCart } from '../store/cartSlice';
-import { useNavigate } from 'react-router-dom'; // Importera useNavigate
+import { useNavigate } from 'react-router-dom'; 
+import { createOrder } from '../services/api'; 
+import styles from '../styles/Checkout.module.scss'; // Importera stilar
 
 function Checkout() {
   const dispatch = useDispatch();
-  const navigate = useNavigate(); // Skapa en instans av useNavigate
+  const navigate = useNavigate(); 
   const cartItems = useSelector(state => state.cart.items);
-  const [tenantId, setTenantId] = useState('your-tenant-id'); // Ersätt med ditt tenant ID
+  const [tenantId, setTenantId] = useState('your-tenant-id'); 
   const [apiKey, setApiKey] = useState('');
 
   const totalPrice = cartItems.reduce((total, item) => total + item.price, 0);
 
   const handleOrder = async () => {
     const orderData = {
-      items: cartItems, // Anta att du skickar varorna som de är
+      items: cartItems, 
       total: totalPrice,
     };
 
-    const response = await createOrder(tenantId, orderData, apiKey); // Skicka beställningen
+    const response = await createOrder(tenantId, orderData, apiKey); 
     if (response) {
-      dispatch(clearCart()); // Töm varukorgen
-      // Navigera till OrderConfirmed-sidan och skicka ordernumret
-      navigate('/order-confirmed', { state: { orderNumber: response.orderNumber } }); // Skickar ordernumret
+      dispatch(clearCart()); 
+      navigate('/order-confirmed', { state: { orderNumber: response.orderNumber } });
     }
   };
 
   return (
-    <div>
+    <div className={styles.checkoutContainer}> {/* Använd className här */}
       <h2>Din Varukorg</h2>
       <ul>
         {cartItems.map(item => (

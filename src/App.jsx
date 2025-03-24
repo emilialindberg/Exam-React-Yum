@@ -1,23 +1,18 @@
 import React from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-import Home from './components/Home';
 import Menu from './components/Menu';
 import Cart from './components/Cart';
+import Checkout from './components/Checkout';
 import OrderConfirmed from './components/OrderConfirmed';
-import Header from './components/Header';
-import Checkout from './components/Checkout'; // Importera Checkout
-
-<Route path="/checkout" element={<Checkout />} />
 
 function App() {
   return (
-    <Router> {/*Definiera rutter & dess komponenter*/}
-      <Header />
+    <Router>
       <Routes>
-        <Route path="/" element={<Home />} />
-        <Route path="/menu" element={<Menu />} />
-        <Route path="/cart" element={<Cart />} />
-        <Route path="/order-confirmed" element={<OrderConfirmed />} />
+        <Route path="/" element={<Menu />} />                {/* Startsidan */}
+        <Route path="/cart" element={<Cart />} />            {/* Varukorgssidan */}
+        <Route path="/checkout" element={<Checkout />} />    {/* Checkout-sidan */}
+        <Route path="/order-confirmed" element={<OrderConfirmed />} /> {/* Orderbekräftelse */}
       </Routes>
     </Router>
   );
