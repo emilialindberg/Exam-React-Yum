@@ -10,7 +10,7 @@ export const fetchApiKey = async () => {
   } catch (error) {
     console.error('Error fetching API key:', error);
   }
-};
+}; 
 
 // Funktion för att hämta menyn
 export const fetchMenu = async (apiKey) => {
@@ -40,6 +40,7 @@ export const createOrder = async (tenantId, orderData, apiKey) => {
     });
     
     const data = await response.json();
+    console.log('Order response:', data); // Logga hela responsen för debugging
     return data; // Returnerar det mottagna svaret
   } catch (error) {
     console.error('Error creating order:', error);

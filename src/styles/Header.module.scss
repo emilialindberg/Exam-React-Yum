@@ -1,0 +1,12 @@
+header {
+    display: flex;
+    justify-content: space-between; /* Placera logotyp och varukorgsikon på sidorna */
+    align-items: center; /* Centrera ikoner i höjdled */
+    padding: 10px;
+    background-color: white; /* Ändra till lämplig bakgrunds- eller förgrundsfärg efter behov */
+  }
+  
+  img {
+    height: 50px; /* Justera storlek på ikoner */
+    cursor: pointer; /* Ändrar muspekaren vid hover för att indikera klikkbarhet */
+  }

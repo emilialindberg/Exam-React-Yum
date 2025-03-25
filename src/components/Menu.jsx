@@ -10,21 +10,22 @@ function Menu() {
   const dispatch = useDispatch();
   const menuItems = useSelector(state => state.menu.items); // Hämta menyn från Redux
 
+  const apiKey = "yum-BAPUdN5hTPLuk3iN"; // Använd den API-nyckeln
+
   useEffect(() => {
-    const getMenu = async () => {
-      const apiKey = await fetchApiKey(); // Hämta API-nyckeln
-      const menuData = await fetchMenu(apiKey); // Hämta menyn
-
-      if (menuData) {
-        console.log('Menu data fetched:', menuData); // Logga menydatan
-        dispatch(setMenu(menuData)); // Sätta menyn i Redux
-      } else {
-        console.error('Ingen data ficks för menyn!'); // Logga om ingen data
-      }
-    };
-
-    getMenu(); // Anropa funktionen
+      const getMenu = async () => {
+        const menuData = await fetchMenu(apiKey); // Hämta menyn
+        if (menuData) {
+          console.log('Menu data fetched:', menuData); // Logga menydatan
+          dispatch(setMenu(menuData.items)); // Sätta menyn i Redux med items
+        } else {
+          console.error('Ingen data ficks för menyn!'); // Logga om ingen data
+        }
+      };
+  
+      getMenu(); // Anropa funktionen
   }, [dispatch]);
+
 
   // Funktion för att lägga till ett objekt i varukorgen
   const handleAddToCart = (item) => {
