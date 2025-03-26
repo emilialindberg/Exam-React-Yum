@@ -33,15 +33,19 @@ export const createOrder = async (tenantId, orderData, apiKey) => {
     const response = await fetch(`https://fdnzawlcf6.execute-api.eu-north-1.amazonaws.com/${tenantId}/orders`, {
       method: 'POST',
       headers: {
-        'x-zocom': apiKey,
+        'x-zocom': apiKey, // API-nyckeln
         'Content-Type': 'application/json',
       },
       body: JSON.stringify(orderData),
     });
-    
-    const data = await response.json();
-    console.log('Order response:', data); // Logga hela responsen för debugging
-    return data; // Returnerar det mottagna svaret
+
+    const data = await response.json(); // Hämta svaret
+
+    // Logga status och datan
+    console.log('Response status:', response.status); // Logga statuskoden
+    console.log('Response body:', data); // Logga hela svaret
+
+    return data; // Returnera orderdata
   } catch (error) {
     console.error('Error creating order:', error);
   }
@@ -57,6 +61,6 @@ export const fetchReceipt = async (orderNumber) => {
     const data = await response.json();
     return data; // Returnerar kvittodata
   } catch (error) {
-    console.error('Error fetching receipt:', error);
+    console.error('Något gick fel', error);
   }
 };

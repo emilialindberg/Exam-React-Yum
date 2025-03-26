@@ -1,17 +1,20 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import styles from '../styles/Checkout.module.scss';
-import headerstyles from '../styles/Header.module.scss';
-
-//ikon och länk till varukorg, navigerar mellan sidor via Link. Just nu utan funktionalitet för att visa antal varor.
+import { useSelector } from 'react-redux';
+import styles from '../styles/Header.module.scss';
 
 function Header() {
+  const cartItems = useSelector(state => state.cart.items);
+  const totalItems = cartItems.reduce((total, item) => total + item.quantity, 0); // Calculate total items in the cart
+
   return (
-    <header>
+    <header className={styles.header}>
       <img src="../img/logo.png" alt="Yum Yum Gimme Sum" />
-      <Link to="/cart"> {/*länkas till varukorgssidan*/}
-        <img src="../img/cart.svg" alt="Cart" />
-        {/* Här kan du senare lägga till antalet varor i korgen */}
+      <Link to="/cart" className={styles.cartLink} onClick={() => console.log('Cart clicked!')}>
+        <img src="../img/cart.svg" alt="Cart" className={styles.cartIcon} />
+        {totalItems > 0 && (
+          <span className={styles.cartCount}>{totalItems}</span>
+        )}
       </Link>
     </header>
   );

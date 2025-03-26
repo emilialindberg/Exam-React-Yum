@@ -1,12 +1,35 @@
-header {
+.header {
+  position: relative; // Ensure positioning is relative to allow for child positioning to be consistent
+  z-index: 10; // Higher index to prioritize this element over others
     display: flex;
-    justify-content: space-between; /* Placera logotyp och varukorgsikon på sidorna */
-    align-items: center; /* Centrera ikoner i höjdled */
-    padding: 10px;
-    background-color: white; /* Ändra till lämplig bakgrunds- eller förgrundsfärg efter behov */
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 20px;
+    height: 2rem;
   }
   
-  img {
-    height: 50px; /* Justera storlek på ikoner */
-    cursor: pointer; /* Ändrar muspekaren vid hover för att indikera klikkbarhet */
+  .cartLink {
+    position: relative;
+    display: inline-block;
+  }
+  
+  .cartIcon {
+    width: 40px;
+    height: 40px;
+  }
+  
+  .cartCount {
+    position: absolute;
+    top: -5px;
+    right: -5px;
+    background-color: red;
+    color: white;
+    font-size: 12px;
+    font-weight: bold;
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
   }

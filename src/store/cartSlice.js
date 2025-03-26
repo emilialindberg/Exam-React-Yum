@@ -7,13 +7,19 @@ const cartSlice = createSlice({
   },
   reducers: {
     addItem: (state, action) => {
-      state.items.push(action.payload); // Lägger till varan
+      const existingItem = state.items.find(item => item.id === action.payload.id);
+      if (existingItem) {
+        existingItem.quantity += 1; // Om varan finns, öka kvantiteten
+      } else {
+        const itemWithQuantity = { ...action.payload, quantity: 1 }; // Skapa en ny varukorgsartikel med kvantitet
+        state.items.push(itemWithQuantity); // Lägga till varan
+      }
     },
     removeItem: (state, action) => {
-      state.items = state.items.filter(item => item.id !== action.payload.id); // Tar bort varan
+      state.items = state.items.filter(item => item.id !== action.payload.id);
     },
     clearCart: (state) => {
-      state.items = []; // Tömmer varukorgen
+      state.items = [];
     },
   },
 });
