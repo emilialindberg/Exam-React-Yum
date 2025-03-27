@@ -9,8 +9,8 @@ function Header() {
 
   return (
     <header className={styles.header}>
-      <img src="../img/logo.png" alt="Yum Yum Gimme Sum" />
-      <Link to="/cart" className={styles.cartLink} onClick={() => console.log('Cart clicked!')}>
+      <img src="../img/logo.png" alt="Yum Yum Gimme Sum" className={styles.headerIcon} />
+      <Link to="/cart" className={styles.cartLink}>
         <img src="../img/cart.svg" alt="Cart" className={styles.cartIcon} />
         {totalItems > 0 && (
           <span className={styles.cartCount}>{totalItems}</span>

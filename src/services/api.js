@@ -36,15 +36,11 @@ export const createOrder = async (tenantId, orderData, apiKey) => {
         'x-zocom': apiKey, // API-nyckeln
         'Content-Type': 'application/json',
       },
-      body: JSON.stringify(orderData),
+      body: JSON.stringify(orderData), // Se till att datan skickas i rätt format
     });
 
     const data = await response.json(); // Hämta svaret
-
-    // Logga status och datan
-    console.log('Response status:', response.status); // Logga statuskoden
-    console.log('Response body:', data); // Logga hela svaret
-
+    console.log('Response from order creation:', data); // Logga
     return data; // Returnera orderdata
   } catch (error) {
     console.error('Error creating order:', error);
@@ -61,6 +57,6 @@ export const fetchReceipt = async (orderNumber) => {
     const data = await response.json();
     return data; // Returnerar kvittodata
   } catch (error) {
-    console.error('Något gick fel', error);
+    console.error('Error fetching receipt:', error);
   }
 };
